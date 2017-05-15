@@ -1,0 +1,5 @@
+<?php
+
+$s_plugin_Datepicker_="";
+$s_plugin_Datepicker_title="Bootstrap DatePicker";
+$s_plugin_Datepicker_description="Replace the default date-selection control with bootstrap datepicker";
