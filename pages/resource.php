@@ -18,15 +18,24 @@ header("Content-Type: text/javascript");
                     .append('<input type="hidden" name="' + name + '_year" value="' + year + '"/>')
                     .append('<input type="hidden" name="' + name + '_month" value="' + month + '"/>')
                     .append('<input type="hidden" name="' + name + '_day" value="' + day + '"/>')
+                    .append('<input type="hidden" name="' + name + '_presence" value="1"/>')
                     .append('<div class = "input-group date"><div class = "input-group-addon"><span class = "fa fa-calendar"></span></div><input type = "text" class = "dateFld" name="' + name + '" ></div>')
                     .find('.dateFld').datepicker(<?php echo plugin_config_get('OPTIONS') ?>).change(function () {
                 var val = jQuery(this).datepicker('getDate');
-                console.log(jQuery(this).parents('td'));
-                jQuery(this).parents('td')
-                        .find('input[name$="_year"]').val(val.getFullYear()).end()
-                        .find('input[name$="_month"]').val(val.getMonth() + 1).end()
-                        .find('input[name$="_day"]').val(val.getDate()).end()
+				if (val == null) {
+                    jQuery(this).parents('td')
+                        .find('input[name$="_year"]').val(val).end()
+                        .find('input[name$="_month"]').val(val).end()
+                        .find('input[name$="_day"]').val(val).end()
                         ;
+				} else {
+                    jQuery(this).parents('td')
+                            .find('input[name$="_year"]').val(val.getFullYear()).end()
+                            .find('input[name$="_month"]').val(val.getMonth() + 1).end()
+                            .find('input[name$="_day"]').val(val.getDate()).end()
+                            ;
+					
+				}
             })
                     ;
             if (year != '0')
